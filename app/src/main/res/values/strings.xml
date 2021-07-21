@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">fuel</string>
+    <string name="hero_text_signup">SignUp</string>
+    <string name="hero_text_login">LogIn</string>
+    <string name="signup_box1">Fullname</string>
+    <string name="signup_box2">Email</string>
+    <string name="signup_box3">Username</string>
+    <string name="signup_box4">Password</string>
+    <string name="btn_register">register</string>
+    <string name="btn_login">login</string>
+    <string name="login_box1">username</string>
+    <string name="login_box2">password</string>
+    <string name="btn_home_screen_login">login</string>
+    <string name="btn_home_screen_signup">signup</string>
+
+
+    <string name="nav_header_title">Hello user</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+</resources>
