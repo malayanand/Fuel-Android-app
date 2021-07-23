@@ -8,39 +8,33 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Trace;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class activity_order_screen extends AppCompatActivity {
 
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_order_screen);
 
-        Button place_order = findViewById(R.id.btn_place_order);
-        EditText addr_details = findViewById(R.id.addr_details);
-
-    // Setting up the navigation drawer
+        //Setting up the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.navView);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
-        NavigationView navigationView;
-        navigationView = findViewById(R.id.navView);
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        Navigation listener for fetching the menu item pressed in the navigation drawer
+        //Navigation listener for fetching the menu item pressed in the navigation drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,33 +48,17 @@ public class MainActivity extends AppCompatActivity {
                     //Handle "help" event
                 } else if (id == R.id.item_logout) {
                     //Handle "logout" event
-                    Intent logout_intent = new Intent(MainActivity.this, activity_login.class);
+                    Intent logout_intent = new Intent(activity_order_screen.this, activity_login.class);
                     startActivity(logout_intent);
+                    finish();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-
-
-        //Place order button action
-        place_order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String address_details = addr_details.getText().toString();
-
-                if(address_details.equals(""))
-                    Toast.makeText(MainActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
-                else {
-                    Intent place_order_screen = new Intent(MainActivity.this, activity_order_screen.class);
-                    startActivity(place_order_screen);
-                }
-            }
-        });
     }
 
-
-//    For checking if the navigation toggle button has been pressed
+    // For checking if the navigation toggle button has been pressed
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)) {

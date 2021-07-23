@@ -43,6 +43,7 @@ public class activity_login extends AppCompatActivity {
                         Toast.makeText(activity_login.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                         Intent main_activity = new Intent(activity_login.this, MainActivity.class);
                         startActivity(main_activity);
+                        finish();
                     }
                     else {
                         Toast.makeText(activity_login.this, "Check username and password", Toast.LENGTH_SHORT).show();

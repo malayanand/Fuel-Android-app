@@ -52,6 +52,7 @@ public class activity_signup extends AppCompatActivity {
                             Toast.makeText(activity_signup.this, "Signup successful", Toast.LENGTH_SHORT).show();
                             Intent main_activity = new Intent(activity_signup.this, MainActivity.class);
                             startActivity(main_activity);
+                            finish();
                         } else {
                             //when data insertion fails
                             Toast.makeText(activity_signup.this, "Signup failed", Toast.LENGTH_SHORT).show();

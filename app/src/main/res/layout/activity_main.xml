@@ -15,19 +15,117 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ACTIVITY"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:background="@drawable/homepage_item"
+            android:orientation="vertical"
+            android:padding="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/molengo"
+                android:letterSpacing="0.2"
+                android:text="@string/quanity"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <Button
+                    android:id="@+id/add_one"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#6B9F54FF"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:letterSpacing="0.2"
+                    android:padding="16dp"
+                    android:text="+1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/add_two"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#6B9F54FF"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:letterSpacing="0.2"
+                    android:padding="16dp"
+                    android:text="+2"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/add_three"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#6B9F54FF"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:letterSpacing="0.2"
+                    android:padding="16dp"
+                    android:text="+3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:textColorHint="@color/white"
+                app:boxStrokeColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addr_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/molengo"
+                    android:hint="Enter address details"
+                    android:inputType="text"
+                    android:letterSpacing="0.2"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_place_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#6B9F54FF"
+                android:fontFamily="@font/noto_sans_bold"
+                android:letterSpacing="0.2"
+                android:padding="16dp"
+                android:text="@string/btn_place_order"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--Navigation drawer layout-->
     <com.google.android.material.navigation.NavigationView

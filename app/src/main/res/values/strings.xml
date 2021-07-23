@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">fuel</string>
+
+    <!--    Signup activity string -->
     <string name="hero_text_signup">SignUp</string>
     <string name="hero_text_login">LogIn</string>
     <string name="signup_box1">Fullname</string>
@@ -7,13 +9,19 @@
     <string name="signup_box3">Username</string>
     <string name="signup_box4">Password</string>
     <string name="btn_register">register</string>
+
+    <!--    Login activity strings -->
     <string name="btn_login">login</string>
     <string name="login_box1">username</string>
     <string name="login_box2">password</string>
     <string name="btn_home_screen_login">login</string>
     <string name="btn_home_screen_signup">signup</string>
 
+    <!--    Home page strings -->
+    <string name="quanity">Quantity</string>
+    <string name="btn_place_order">Place Order</string>
 
+    <!--    Navigation drawer -->
     <string name="nav_header_title">Hello user</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
 
