@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,14 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnadd = findViewById(R.id.add);
-        Button btnminus = findViewById(R.id.minus);
-        int tanks = 0;
-        boolean flagpetrol = false;
-        boolean flagdeisel = false;
+
         Button place_order = findViewById(R.id.btn_place_order);
-        EditText addr_details = findViewById(R.id.addr_details);
-        TextView fueltanks = findViewById(R.id.tanks);
 
     // Setting up the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -75,23 +70,29 @@ public class MainActivity extends AppCompatActivity {
         place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String address_details = addr_details.getText().toString();
+                EditText addr_details = findViewById(R.id.addrline1);
+                EditText addr2_details = findViewById(R.id.addrline2);
+                TextView fueltanks = findViewById(R.id.tanks);
+                Button maps = findViewById(R.id.Maps);
                 boolean checked = ((android.widget.CheckBox)v).isChecked();
-                boolean flagpetrol = false;
-                boolean flagdeisel = false;
+                CheckBox petrol = findViewById(R.id.petrolflag);
+                CheckBox deisel = findViewById(R.id.deiselflag);
                 switch(v.getId()) {
                     case R.id.petrolflag:
-                        if (checked) {
-                            flagpetrol = true;
-                        }
+                        if (checked)
+                            petrol.setChecked(true);
                         break;
                     case R.id.deiselflag:
-                        if (checked){
-                        flagdeisel = true;
-                        }
+                        if (checked) deisel.setChecked(true);
                         break;
-
+                    default:
+                        throw new IllegalStateException("Set Fuel Type");
                 }
+                String address_details = addr_details.getText().toString();
+                address_details += addr2_details.getText().toString();
+                Button btnadd = findViewById(R.id.add);
+                Button btnminus = findViewById(R.id.minus);
+                int tanks = 0;
                 if(v.equals(btnadd))
                 {
                     tanks++;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 else if(v.equals(btnminus))
                 {
                     tanks--;
-                    fueltanks.setText(toString(tanks));
+                    fueltanks.setText(String.valueOf(tanks));
                 }
 
                 if(address_details.equals(""))
@@ -109,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent place_order_screen = new Intent(MainActivity.this, activity_order_screen.class);
                     startActivity(place_order_screen);
                 }
+//                if(v.equals(maps))
+//                {
+//                    Intent maps = new Intent(MainActivity.this, )
+//                }
             }
         });
     }
