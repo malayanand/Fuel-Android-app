@@ -21,11 +21,16 @@ public class MainActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Button btnadd = findViewById(R.id.add);
+        Button btnminus = findViewById(R.id.minus);
+        int tanks = 0;
+        boolean flagpetrol = false;
+        boolean flagdeisel = false;
         Button place_order = findViewById(R.id.btn_place_order);
         EditText addr_details = findViewById(R.id.addr_details);
 
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     //Handle "logout" event
                     Intent logout_intent = new Intent(MainActivity.this, activity_login.class);
                     startActivity(logout_intent);
+                    finish();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -68,6 +74,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String address_details = addr_details.getText().toString();
+                boolean checked = ((CheckBox)v).isChecked();
+
+                switch(v.getId()) {
+                    case R.id.petrolflag:
+                        if (checked){
+                         flagpetrol = true;}
+                        break;
+                    case R.id.deiselflag:
+                        if (checked){
+                        flagdeisel = true;}
+                        break;
+
+                }
+                if(v.equals(btnadd))
+                {
+                    tanks++;
+                }
+                else if(v.equals(btnminus))
+                {
+                    tanks--;
+                }
 
                 if(address_details.equals(""))
                     Toast.makeText(MainActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
