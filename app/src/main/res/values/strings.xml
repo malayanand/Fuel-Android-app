@@ -27,4 +27,12 @@
 
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="petrol">Petrol</string>
+    <string name="deisel">Deisel</string>
+    <string name="minus">-</string>
+    <string name="tanks">Tanks</string>
+    <string name="add">+</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="open_in_maps">Open in Maps</string>
 </resources>
