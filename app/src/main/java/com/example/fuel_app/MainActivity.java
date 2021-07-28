@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         boolean flagdeisel = false;
         Button place_order = findViewById(R.id.btn_place_order);
         EditText addr_details = findViewById(R.id.addr_details);
+        TextView fueltanks = findViewById(R.id.tanks);
 
     // Setting up the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -74,26 +76,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String address_details = addr_details.getText().toString();
-                boolean checked = ((CheckBox)v).isChecked();
-
+                boolean checked = ((android.widget.CheckBox)v).isChecked();
+                boolean flagpetrol = false;
+                boolean flagdeisel = false;
                 switch(v.getId()) {
                     case R.id.petrolflag:
-                        if (checked){
-                         flagpetrol = true;}
+                        if (checked) {
+                            flagpetrol = true;
+                        }
                         break;
                     case R.id.deiselflag:
                         if (checked){
-                        flagdeisel = true;}
+                        flagdeisel = true;
+                        }
                         break;
 
                 }
                 if(v.equals(btnadd))
                 {
                     tanks++;
+                    fueltanks.setText(String.valueOf(tanks));
                 }
                 else if(v.equals(btnminus))
                 {
                     tanks--;
+                    fueltanks.setText(toString(tanks));
                 }
 
                 if(address_details.equals(""))
