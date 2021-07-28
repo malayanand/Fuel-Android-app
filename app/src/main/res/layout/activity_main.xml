@@ -152,10 +152,23 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/Maps"
+                android:layout_width="380dp"
+                android:layout_height="176dp"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="#6B9F54FF"
+                android:fontFamily="@font/noto_sans_bold"
+                android:letterSpacing="0.2"
+                android:padding="16dp"
+                android:text="Open in Maps"
+                android:textSize="16sp" />
+
+            <Button
                 android:id="@+id/btn_place_order"
-                android:layout_width="337dp"
-                android:layout_height="164dp"
-                android:layout_margin="10dp"
+                android:layout_width="380dp"
+                android:layout_height="215dp"
+                android:layout_margin="16dp"
                 android:layout_weight="1"
                 android:backgroundTint="#6B9F54FF"
                 android:fontFamily="@font/noto_sans_bold"
