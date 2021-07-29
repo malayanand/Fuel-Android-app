@@ -7,31 +7,102 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public DrawerLayout drawerLayout;
-
+    int tank = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button maps = findViewById(R.id.Maps);
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Uri gmmIntentUri = Uri.parse("geo:0,0?q=");
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                    }
+                }, 1000);
+            }
+        });
+
+
+        CheckBox petrol = findViewById(R.id.petrolflag);
+        CheckBox deisel = findViewById(R.id.deiselflag);
+        for (CheckBox checkBox : Arrays.asList(petrol, deisel))
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(petrol.isChecked()) {
+                    }
+                        if(deisel.isChecked()){
+
+                        };
+                }
+            });
+        TextView fueltanks = findViewById(R.id.tanks);
+        Button btnadd = findViewById(R.id.add);
+        Button btnminus = findViewById(R.id.minus);
+
+        for (Button tanks : Arrays.asList(btnminus, btnadd))
+            tanks.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(v.equals(btnadd))
+                    {
+                        tank++;
+                        fueltanks.setText(String.valueOf(tank));
+                    }
+                    else if(v.equals(btnminus))
+                    {
+                        if(tank>0)
+                            tank--;
+                        fueltanks.setText(String.valueOf(tank));
+                    }
+                }
+            });
 
         Button place_order = findViewById(R.id.btn_place_order);
-
-    // Setting up the navigation drawer
+        place_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText addr_details = findViewById(R.id.addrline1);
+                EditText addr2_details = findViewById(R.id.addrline2);
+                String address_details = addr_details.getText().toString();
+                address_details += addr2_details.getText().toString();
+                if(address_details.equals(""))
+                    Toast.makeText(MainActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
+                else {
+                    Intent place_order_screen = new Intent(MainActivity.this, activity_order_screen.class);
+                    startActivity(place_order_screen);
+                }
+            }
+        });
+        // Setting up the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         NavigationView navigationView;
@@ -65,57 +136,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //Place order button action
-        place_order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText addr_details = findViewById(R.id.addrline1);
-                EditText addr2_details = findViewById(R.id.addrline2);
-                TextView fueltanks = findViewById(R.id.tanks);
-                Button maps = findViewById(R.id.Maps);
-                boolean checked = ((android.widget.CheckBox)v).isChecked();
-                CheckBox petrol = findViewById(R.id.petrolflag);
-                CheckBox deisel = findViewById(R.id.deiselflag);
-                switch(v.getId()) {
-                    case R.id.petrolflag:
-                        if (checked)
-                            petrol.setChecked(true);
-                        break;
-                    case R.id.deiselflag:
-                        if (checked) deisel.setChecked(true);
-                        break;
-                    default:
-                        throw new IllegalStateException("Set Fuel Type");
-                }
-                String address_details = addr_details.getText().toString();
-                address_details += addr2_details.getText().toString();
-                Button btnadd = findViewById(R.id.add);
-                Button btnminus = findViewById(R.id.minus);
-                int tanks = 0;
-                if(v.equals(btnadd))
-                {
-                    tanks++;
-                    fueltanks.setText(String.valueOf(tanks));
-                }
-                else if(v.equals(btnminus))
-                {
-                    tanks--;
-                    fueltanks.setText(String.valueOf(tanks));
-                }
-
-                if(address_details.equals(""))
-                    Toast.makeText(MainActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
-                else {
-                    Intent place_order_screen = new Intent(MainActivity.this, activity_order_screen.class);
-                    startActivity(place_order_screen);
-                }
-//                if(v.equals(maps))
-//                {
-//                    Intent maps = new Intent(MainActivity.this, )
-//                }
-            }
-        });
     }
 
 
